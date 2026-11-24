@@ -1,0 +1,303 @@
+{
+  "format": "ditto-play",
+  "formatVersion": "0.1",
+  "id": "project-complete",
+  "name": "Beta User Trial · Complete Project",
+  "createdAt": "2026-11-20T10:31:55.868559Z",
+  "entryState": "overview",
+  "states": [
+    {
+      "id": "overview",
+      "label": "Project overview",
+      "screen": "states/overview/screen.png",
+      "semantics": "states/overview/semantics.xml"
+    },
+    {
+      "id": "goal",
+      "label": "Project goal and progress",
+      "screen": "states/goal/screen.png",
+      "semantics": "states/goal/semantics.xml"
+    },
+    {
+      "id": "todos",
+      "label": "To-do deck",
+      "screen": "states/todos/screen.png",
+      "semantics": "states/todos/semantics.xml"
+    },
+    {
+      "id": "todo-next",
+      "label": "Next project to-do",
+      "screen": "states/todo-next/screen.png",
+      "semantics": "states/todo-next/semantics.xml"
+    },
+    {
+      "id": "todo-core-plan",
+      "label": "Mock Core action plan",
+      "screen": "states/todo-core-plan/screen.png",
+      "semantics": "states/todo-core-plan/semantics.xml"
+    },
+    {
+      "id": "brain",
+      "label": "Project Brain board",
+      "screen": "states/brain/screen.png",
+      "semantics": "states/brain/semantics.xml"
+    },
+    {
+      "id": "brain-session",
+      "label": "Project Brain session detail",
+      "screen": "states/brain-session/screen.png",
+      "semantics": "states/brain-session/semantics.xml"
+    },
+    {
+      "id": "brain-session-summary",
+      "label": "Session summary and evidence",
+      "screen": "states/brain-session-summary/screen.png",
+      "semantics": "states/brain-session-summary/semantics.xml"
+    },
+    {
+      "id": "brain-dashboard",
+      "label": "Dashboard artifact preview",
+      "screen": "states/brain-dashboard/screen.png",
+      "semantics": "states/brain-dashboard/semantics.xml"
+    },
+    {
+      "id": "dashboard-mock",
+      "label": "Mock dashboard result",
+      "screen": "states/dashboard-mock/screen.png",
+      "semantics": "states/dashboard-mock/semantics.xml"
+    },
+    {
+      "id": "evidence-mock",
+      "label": "Mock Core evidence answer",
+      "screen": "states/evidence-mock/screen.png",
+      "semantics": "states/evidence-mock/semantics.xml"
+    },
+    {
+      "id": "resource-hub",
+      "label": "Project resource preview",
+      "screen": "states/resource-hub/screen.png",
+      "semantics": "states/resource-hub/semantics.xml"
+    },
+    {
+      "id": "session-mock",
+      "label": "Mock Project conversation",
+      "screen": "states/session-mock/screen.png",
+      "semantics": "states/session-mock/semantics.xml"
+    }
+  ],
+  "transitions": [
+    {
+      "id": "overview--goal",
+      "from": "overview",
+      "to": "goal",
+      "type": "tap",
+      "label": "Open project goal",
+      "x": 94,
+      "y": 140
+    },
+    {
+      "id": "goal--overview",
+      "from": "goal",
+      "to": "overview",
+      "type": "tap",
+      "label": "Close goal",
+      "x": 944,
+      "y": 690
+    },
+    {
+      "id": "overview--todos",
+      "from": "overview",
+      "to": "todos",
+      "type": "tap",
+      "label": "Open To-do",
+      "x": 620,
+      "y": 140
+    },
+    {
+      "id": "todos--todo-next",
+      "from": "todos",
+      "to": "todo-next",
+      "type": "tap",
+      "label": "Next to-do",
+      "x": 850,
+      "y": 2130
+    },
+    {
+      "id": "todo-next--todos",
+      "from": "todo-next",
+      "to": "todos",
+      "type": "tap",
+      "label": "Previous to-do",
+      "x": 230,
+      "y": 2130
+    },
+    {
+      "id": "todos--todo-core-plan",
+      "from": "todos",
+      "to": "todo-core-plan",
+      "type": "tap",
+      "label": "Just Ditto It",
+      "x": 610,
+      "y": 2130
+    },
+    {
+      "id": "todo-next--todo-core-plan",
+      "from": "todo-next",
+      "to": "todo-core-plan",
+      "type": "tap",
+      "label": "Just Ditto It",
+      "x": 610,
+      "y": 2130
+    },
+    {
+      "id": "todo-core-plan--todos",
+      "from": "todo-core-plan",
+      "to": "todos",
+      "type": "tap",
+      "label": "Back to to-do",
+      "x": 380,
+      "y": 1460
+    },
+    {
+      "id": "todos--overview",
+      "from": "todos",
+      "to": "overview",
+      "type": "system",
+      "label": "Close To-do"
+    },
+    {
+      "id": "overview--brain",
+      "from": "overview",
+      "to": "brain",
+      "type": "tap",
+      "label": "Open Project Brain",
+      "x": 850,
+      "y": 140
+    },
+    {
+      "id": "brain--overview",
+      "from": "brain",
+      "to": "overview",
+      "type": "tap",
+      "label": "Back to Overview",
+      "x": 360,
+      "y": 140
+    },
+    {
+      "id": "brain--brain-session",
+      "from": "brain",
+      "to": "brain-session",
+      "type": "tap",
+      "label": "Open evidence session",
+      "x": 250,
+      "y": 500
+    },
+    {
+      "id": "brain-session--brain-session-summary",
+      "from": "brain-session",
+      "to": "brain-session-summary",
+      "type": "tap",
+      "label": "Read summary",
+      "x": 520,
+      "y": 2180
+    },
+    {
+      "id": "brain-session--session-mock",
+      "from": "brain-session",
+      "to": "session-mock",
+      "type": "tap",
+      "label": "Open session",
+      "x": 220,
+      "y": 2180
+    },
+    {
+      "id": "brain-session-summary--brain-session",
+      "from": "brain-session-summary",
+      "to": "brain-session",
+      "type": "tap",
+      "label": "Close summary",
+      "x": 945,
+      "y": 950
+    },
+    {
+      "id": "session-mock--brain-session",
+      "from": "session-mock",
+      "to": "brain-session",
+      "type": "tap",
+      "label": "Back to Project Brain",
+      "x": 390,
+      "y": 1500
+    },
+    {
+      "id": "brain-session--brain-dashboard",
+      "from": "brain-session",
+      "to": "brain-dashboard",
+      "type": "tap",
+      "label": "Open dashboard artifact",
+      "x": 520,
+      "y": 930
+    },
+    {
+      "id": "brain-dashboard--dashboard-mock",
+      "from": "brain-dashboard",
+      "to": "dashboard-mock",
+      "type": "tap",
+      "label": "Open dashboard",
+      "x": 540,
+      "y": 2180
+    },
+    {
+      "id": "dashboard-mock--brain-dashboard",
+      "from": "dashboard-mock",
+      "to": "brain-dashboard",
+      "type": "tap",
+      "label": "Back to dashboard preview",
+      "x": 390,
+      "y": 1500
+    },
+    {
+      "id": "overview--evidence-mock",
+      "from": "overview",
+      "to": "evidence-mock",
+      "type": "tap",
+      "label": "Ask evidence question",
+      "x": 480,
+      "y": 820
+    },
+    {
+      "id": "evidence-mock--overview",
+      "from": "evidence-mock",
+      "to": "overview",
+      "type": "tap",
+      "label": "Back to Project",
+      "x": 390,
+      "y": 1500
+    },
+    {
+      "id": "overview--resource-hub",
+      "from": "overview",
+      "to": "resource-hub",
+      "type": "tap",
+      "label": "Open Product Hub",
+      "x": 520,
+      "y": 1080
+    },
+    {
+      "id": "resource-hub--overview",
+      "from": "resource-hub",
+      "to": "overview",
+      "type": "tap",
+      "label": "Back to Project",
+      "x": 390,
+      "y": 1500
+    }
+  ],
+  "source": {
+    "platform": "android",
+    "deviceSerial": "emulator-5554",
+    "branch": "local/project-agent-trial",
+    "commit": "bfefe7f",
+    "package": "com.nothing.ai.agent.project.capture",
+    "build": "playground-mock-01"
+  }
+}

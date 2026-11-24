@@ -1,0 +1,5 @@
+.gallery-card-footer button.gallery-open{border:0}
+.snapshot-runtime .phone>img{aspect-ratio:1260/2800;object-fit:cover}
+.project-runtime .phone>img{aspect-ratio:1080/2400}
+.share-safe{font:10px NType82M,monospace}
+@media(max-width:760px){.site-header{position:relative}.plugin-download span{max-width:92px}}

@@ -1,0 +1,109 @@
+{
+  "format": "ditto-play",
+  "formatVersion": "0.2",
+  "id": "spark-semantic-project-session-canvas",
+  "name": "Spark semantic Project and Session canvas",
+  "createdAt": "2026-11-23T06:43:02.492225Z",
+  "entryState": "launcher-entry",
+  "states": [
+    {
+      "id": "launcher-entry",
+      "label": "Ditto launcher and Spark entry",
+      "screen": "states/launcher-entry/screen.png",
+      "semantics": "states/launcher-entry/semantics.xml"
+    },
+    {
+      "id": "project-overview",
+      "label": "Semantic Project overview",
+      "screen": "states/project-overview/screen.png",
+      "semantics": "states/project-overview/semantics.xml"
+    },
+    {
+      "id": "session-detail",
+      "label": "White Session detail and meeting summary",
+      "screen": "states/session-detail/screen.png"
+    },
+    {
+      "id": "canvas-relations",
+      "label": "Reusable Session canvas with semantic connectors",
+      "screen": "states/canvas-relations/screen.png",
+      "semantics": "states/canvas-relations/semantics.xml"
+    }
+  ],
+  "transitions": [
+    {
+      "id": "open-project",
+      "from": "launcher-entry",
+      "to": "project-overview",
+      "type": "tap",
+      "label": "Open Spark Project overview",
+      "x": 985,
+      "y": 2545
+    },
+    {
+      "id": "open-session",
+      "from": "project-overview",
+      "to": "session-detail",
+      "type": "tap",
+      "label": "Open a Session",
+      "x": 590,
+      "y": 1180
+    },
+    {
+      "id": "switch-canvas",
+      "from": "session-detail",
+      "to": "canvas-relations",
+      "type": "tap",
+      "label": "Switch to canvas mode",
+      "x": 720,
+      "y": 2640
+    },
+    {
+      "id": "switch-timeline",
+      "from": "canvas-relations",
+      "to": "session-detail",
+      "type": "tap",
+      "label": "Return to Session detail",
+      "x": 540,
+      "y": 2640
+    }
+  ],
+  "source": {
+    "platform": "android",
+    "deviceSerial": "23112153D000030",
+    "repository": "https://github.com/Nothing-Technology-Limit/Ditto.git",
+    "branch": "dev-daria-spark",
+    "commit": "c2e93712ed653df28bde25d93030351fcf6e94d8",
+    "package": "com.nothing.ai.agent",
+    "build": "0.10.0+261029203852.1bfedac76",
+    "dittoVersion": "0.10.0",
+    "version": "0.1.0"
+  },
+  "creator": {
+    "name": "Daria Yi",
+    "github": "dariayi-cell"
+  },
+  "project": {
+    "name": "Spark"
+  },
+  "runtime": {
+    "kind": "device",
+    "serial": "23112153D000030",
+    "model": "",
+    "os": "",
+    "api": ""
+  },
+  "codex": {
+    "sessionId": "01a1d2dd-b076-7fa3-b5c1-2e6ebf4bb4ff"
+  },
+  "capture": {
+    "intent": "Show Ditto entry, semantic Project clusters, white Session detail, and reusable relationship canvas.",
+    "mockPolicy": "Use verified on-device screens from A024; no raw microphone audio, no Core mutation, and do not claim related-card final expansion as QA passed."
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewedAt": null,
+    "note": null
+  }
+}

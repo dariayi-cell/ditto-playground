@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Ditto Playground</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./refinements.css">
+  <link rel="stylesheet" href="./details.css">
+  <link rel="stylesheet" href="./share.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Ditto Playground home"><span>DITTO</span><span class="wordmark-dot">•</span><span>PLAYGROUND</span><sup>BETA</sup></a>
+    <nav class="site-actions" aria-label="Playground controls">
+      <a class="plugin-download" href="https://github.com/dariayi-cell/mock-ditto-runtime" target="_blank" rel="noreferrer" aria-label="Open Mock Ditto Runtime on GitHub"><span>PLUGIN ON GITHUB</span><b>↗</b></a>
+      <button class="circle-button" type="button" aria-label="Toggle theme"><span class="sun">✳</span></button>
+      <button class="menu-button" type="button"><span>MENU</span><i></i></button>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="playground-hero" aria-labelledby="hero-title">
+      <span class="cross cross-one">+</span><span class="cross cross-two">+</span><span class="cross cross-three">+</span>
+      <article class="branch-card floating-card"><div class="card-top"><span>PROJECT</span><span class="live-dot"></span></div><strong>Beta User Trial</strong><small>local/project-agent-trial</small><div class="mini-tags"><span>ANDROID 15</span><span>CAPTURED</span></div></article>
+      <div class="hero-route" aria-hidden="true"><span class="route-node node-source"></span><span class="route-node node-runtime"></span><span class="route-node node-play"></span><i class="route-line route-one"></i><i class="route-line route-two"></i></div>
+      <article class="runtime-note" aria-hidden="true"><div><span class="runtime-pulse"></span><b>MOCK DITTO RUNTIME</b></div><strong>17</strong><small>PLAYABLE STATES</small><footer><span>WEB</span><span>SHARE SAFE</span></footer></article>
+      <div class="upload-token" aria-hidden="true"><i>↑</i><span>RUNTIME UPLOADED<br><b>NO EMULATOR NEEDED</b></span></div>
+      <div class="prototype-peek" aria-hidden="true"><span></span><span></span><span></span><b>SHARE<br>READY</b></div>
+      <div class="orb orb-code" aria-hidden="true"><span>&lt;/&gt;</span><small>CODE</small></div>
+      <div class="orb orb-pull" aria-hidden="true"><span>↓</span><small>OPEN</small></div>
+      <div class="hero-copy"><p class="kicker"><span></span> BRANCH-BACKED PROTOTYPES</p><h1 id="hero-title">Come to play with <em>Ditto.</em><br>Your living prototype awaits.</h1><p class="intro">Explore captured Android flows directly in your browser.<br>No APK, ADB or local emulator required.</p></div>
+      <div class="scroll-note"><span>SCROLL TO EXPLORE</span><b>↓</b></div>
+    </section>
+    <section class="collection" aria-labelledby="collection-title">
+      <div class="collection-heading"><h2 id="collection-title">Project Builds</h2><p>Open a portable interaction graph captured from the original Android build.</p></div>
+      <div class="project-row">
+        <article class="project-tile gallery-card" aria-label="Daria Yi, Project Session prototype">
+          <header class="gallery-card-meta"><span class="gallery-author"><i>D</i>DARIA YI</span><time datetime="2026-11-24T17:53:00+08:00">UPLOADED 24 NOV 2026 · 17:53 CST</time></header>
+          <img class="project-preview" src="./snapshots/project-complete/states/overview/screen.png" alt="Beta User Trial Project thumbnail">
+          <footer class="gallery-card-footer"><div><h3>Project Session</h3><p>Turn a Project task into a Ditto Session, then return with the result kept in context.</p></div><button class="gallery-open" id="project-open" type="button">OPEN PROJECT <span>↗</span></button></footer>
+        </article>
+        <article class="project-tile gallery-card" aria-label="Daria Yi, Spark prototype">
+          <header class="gallery-card-meta"><span class="gallery-author"><i>D</i>DARIA YI</span><time datetime="2026-11-24T17:53:00+08:00">UPLOADED 24 NOV 2026 · 17:53 CST</time></header>
+          <img class="project-preview session-preview" src="./snapshots/spark-semantic/states/canvas-relations/screen.png" alt="Spark semantic canvas thumbnail">
+          <footer class="gallery-card-footer"><div><h3>Spark</h3><p>Move from the Ditto launcher into a semantic Project, Session detail and connected canvas.</p></div><button class="gallery-open" id="spark-open" type="button">OPEN PROJECT <span>↗</span></button></footer>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="project-viewer" id="project-viewer" hidden role="dialog" aria-modal="true" aria-label="Project interactive snapshot">
+    <button class="viewer-backdrop" type="button" aria-label="Close Project"></button>
+    <div class="viewer-panel"><header class="viewer-header"><div><span class="snapshot-dot"></span><strong>DITTO PLAYGROUND / PROJECT</strong><small>PORTABLE INTERACTION GRAPH</small></div><button class="viewer-close" type="button">CLOSE ×</button></header>
+      <div class="viewer-body"><div class="viewer-copy"><span>01 / PROJECT BUILD</span><h2>Project Session</h2><p>Explore Overview, To-do, Project Brain, sessions, artifacts and deterministic mock responses without a local emulator.</p><dl><div><dt>CREATOR</dt><dd>Daria Yi</dd></div><div><dt>BRANCH</dt><dd id="project-branch">LOADING…</dd></div><div><dt>BUILD</dt><dd id="project-build">LOADING…</dd></div><div><dt>VERSION</dt><dd id="project-version">LOADING…</dd></div><div><dt>RUNTIME</dt><dd>Web · Captured Android states</dd></div><div><dt>STATUS</dt><dd id="project-status">LOADING…</dd></div></dl><div class="viewer-actions"><button id="project-reset" type="button">RESET FLOW</button><button type="button">13 STATES</button></div></div>
+      <aside class="runtime-card snapshot-runtime project-runtime"><div class="runtime-meta"><div><span class="snapshot-dot"></span><strong>SNAPSHOT PLAYER</strong></div><span id="project-state-label">STATE 01 / 13</span></div><div class="phone"><div class="speaker"></div><img id="project-screen" alt="Project runtime state"><div id="project-hotspots" class="snapshot-hotspots"></div><div class="gesture"></div></div><div class="runtime-footer"><span>PROJECT SESSION</span><span id="project-hint">CHOOSE A PATH</span></div></aside></div>
+    </div>
+  </section>
+
+  <section class="project-viewer" id="spark-viewer" hidden role="dialog" aria-modal="true" aria-label="Spark interactive snapshot">
+    <button class="viewer-backdrop" type="button" aria-label="Close Spark"></button>
+    <div class="viewer-panel"><header class="viewer-header"><div><span class="snapshot-dot"></span><strong>DITTO PLAYGROUND / SPARK</strong><small>PORTABLE INTERACTION GRAPH</small></div><button class="viewer-close" type="button">CLOSE ×</button></header>
+      <div class="viewer-body"><div class="viewer-copy"><span>02 / SPARK BUILD</span><h2>Spark</h2><p>Replay the captured path from Launcher to Project overview, Session detail and the semantic relationship canvas.</p><dl><div><dt>CREATOR</dt><dd id="spark-creator">Daria Yi</dd></div><div><dt>BRANCH</dt><dd id="spark-branch">LOADING…</dd></div><div><dt>BUILD</dt><dd id="spark-build">LOADING…</dd></div><div><dt>DITTO</dt><dd id="spark-version">LOADING…</dd></div><div><dt>RUNTIME</dt><dd>Web · Captured Android states</dd></div><div><dt>STATUS</dt><dd id="spark-status">LOADING…</dd></div></dl><div class="viewer-actions"><button id="spark-reset" type="button">RESET FLOW</button><button type="button">4 STATES</button></div></div>
+      <aside class="runtime-card snapshot-runtime"><div class="runtime-meta"><div><span class="snapshot-dot"></span><strong>MOCK DITTO RUNTIME</strong></div><span id="spark-state-label">STATE 01 / 04</span></div><div class="phone"><div class="speaker"></div><img id="spark-screen" alt="Spark runtime state"><div id="spark-hotspots" class="snapshot-hotspots"></div><div class="gesture"></div></div><div class="runtime-footer"><span>SPARK</span><span id="spark-hint">OPEN PROJECT</span></div></aside></div>
+    </div>
+  </section>
+  <script type="module" src="./share.js"></script>
+</body>
+</html>
