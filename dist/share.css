@@ -3,3 +3,10 @@
 .project-runtime .phone>img{aspect-ratio:1080/2400}
 .share-safe{font:10px NType82M,monospace}
 @media(max-width:760px){.site-header{position:relative}.plugin-download span{max-width:92px}}
+#project-local-frame{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5;background:#191915}
+#project-local-frame[hidden],.project-local-setup[hidden]{display:none!important}
+#project-viewer .recipient-live>#project-screen,#project-viewer .recipient-live>#project-hotspots{visibility:hidden}
+.project-local-status:empty{display:none}
+.project-local-setup{display:grid;gap:6px;max-width:320px;margin-top:12px;font-size:12px}
+.project-local-setup input{min-width:0;max-width:180px;font:inherit}
+.project-local-setup a{color:inherit;text-underline-offset:3px}

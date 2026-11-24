@@ -1,0 +1,15 @@
+{
+  "format": "ditto-playground-runner/1",
+  "id": "project-session",
+  "label": "Project Session",
+  "target": {
+    "type": "recipient-local-emulator",
+    "testedProfile": "Android 15 / API 35 / ARM64",
+    "apkProvided": false,
+    "apkSha256": "1a4024c08eebd454fd489371bfd8fc01b5a9c1f7878c04bf6edf067bcdd03301",
+    "package": "com.nothing.ai.agent.project.sessiontest",
+    "activity": "com.nothing.ai.agent.project.ProjectActivity"
+  },
+  "localRunner": "http://127.0.0.1:4175/connect",
+  "data": "Fictional local demo data. No app binary, account or session data is included."
+}
