@@ -4,6 +4,9 @@ const viewer = document.querySelector('#project-viewer');
 const action = document.querySelector('#project-run-local');
 const setup = document.querySelector('#project-local-setup');
 const status = document.querySelector('#project-local-status');
+const panelState = document.querySelector('#project-state-label');
+const panelHint = document.querySelector('#project-hint');
+const buildState = document.querySelector('#project-status');
 const build = document.querySelector('#project-live-build');
 const frame = document.querySelector('#project-local-frame');
 const phone = frame.closest('.phone');
@@ -11,6 +14,9 @@ let mode = 'idle', timer, dialog, challenge, grant, expires = 0, consentReady = 
 
 function show(next, message) {
   mode = next;
+  panelState.textContent = next === 'live' ? '实时 · 本机' : '首页截图';
+  panelHint.textContent = next === 'live' ? '可直接操作' : next === 'starting' ? '等待模拟器画面' : '点击「在我的设备运行」';
+  buildState.textContent = next === 'live' ? '实时运行' : next === 'starting' ? '正在启动或连接' : '静态预览';
   status.textContent = message;
   frame.hidden = next !== 'live';
   phone.classList.toggle('recipient-live', next === 'live');
@@ -33,7 +39,7 @@ function disconnect(message = '', next = 'idle') {
 }
 
 async function start() {
-  show('starting','正在连接你的本地模拟器。收到实时画面前保留原截图。');
+  show('starting','正在打开你的本地模拟器。收到实时画面前保留首页截图。');
   if (location.protocol === 'https:') {
     try {
       const permission = await navigator.permissions?.query({name:'loopback-network'});
@@ -69,7 +75,7 @@ function requestConsent() {
   const poll = () => {
     if (mode !== 'authorizing') return;
     if (dialog?.closed || (!consentReady && Date.now()>readyBy) || Date.now()>until) {
-      disconnect('未连接。请打开新版启动器后重试；截图回放仍可用。','error');
+      disconnect('未连接。请打开新版启动器后重试；首页截图仍保留。','error');
     } else timer=setTimeout(poll,700);
   };
   timer=setTimeout(poll,700);
@@ -102,7 +108,7 @@ window.addEventListener('message', event => {
   if (!['starting','live'].includes(mode) || event.source !== frame.contentWindow) return;
   if (data === 'ditto-project-bridge-ready') {
     clearTimeout(timer);
-    timer=setTimeout(() => disconnect('没有收到实时画面，截图回放仍可用。','error'),30000);
+    timer=setTimeout(() => disconnect('模拟器还没返回实时画面。首页截图仍保留，可重试。','error'),150000);
     return;
   }
   if (data?.type !== 'ditto-project-status' || typeof data.label !== 'string') return;
