@@ -42,8 +42,8 @@
         </article>
         <article class="project-tile gallery-card" aria-label="Daria Yi, Spark prototype">
           <header class="gallery-card-meta"><span class="gallery-author"><i>D</i>DARIA YI</span><time datetime="2026-11-24T17:53:00+08:00">UPLOADED 24 NOV 2026 · 17:53 CST</time></header>
-          <img class="project-preview session-preview" src="./snapshots/spark-semantic/states/canvas-relations/screen.png" alt="Spark semantic canvas thumbnail">
-          <footer class="gallery-card-footer"><div><h3>Spark</h3><p>Move from the Ditto launcher into a semantic Project, Session detail and connected canvas.</p></div><button class="gallery-open" id="spark-open" type="button">OPEN PROJECT <span>↗</span></button></footer>
+          <img class="project-preview session-preview" src="./snapshots/spark-semantic/states/project-overview/screen.png" alt="Spark 首页截图">
+          <footer class="gallery-card-footer"><div><h3>Spark</h3><p>Run a sample meeting in the original Spark Android app.</p></div><button class="gallery-open" id="spark-open" type="button">OPEN SPARK LIVE <span>↗</span></button></footer>
         </article>
       </div>
     </section>
@@ -65,14 +65,22 @@
     </div>
   </section>
 
-  <section class="project-viewer" id="spark-viewer" hidden role="dialog" aria-modal="true" aria-label="Spark interactive snapshot">
+  <section class="project-viewer" id="spark-viewer" hidden role="dialog" aria-modal="true" aria-label="Spark 本机预览">
     <button class="viewer-backdrop" type="button" aria-label="Close Spark"></button>
-    <div class="viewer-panel"><header class="viewer-header"><div><span class="snapshot-dot"></span><strong>DITTO PLAYGROUND / SPARK</strong><small>PORTABLE INTERACTION GRAPH</small></div><button class="viewer-close" type="button">CLOSE ×</button></header>
-      <div class="viewer-body"><div class="viewer-copy"><span>02 / SPARK BUILD</span><h2>Spark</h2><p>Replay the captured path from Launcher to Project overview, Session detail and the semantic relationship canvas.</p><dl><div><dt>CREATOR</dt><dd id="spark-creator">Daria Yi</dd></div><div><dt>BRANCH</dt><dd id="spark-branch">LOADING…</dd></div><div><dt>BUILD</dt><dd id="spark-build">LOADING…</dd></div><div><dt>DITTO</dt><dd id="spark-version">LOADING…</dd></div><div><dt>RUNTIME</dt><dd>Web · Captured Android states</dd></div><div><dt>STATUS</dt><dd id="spark-status">LOADING…</dd></div></dl><div class="viewer-actions"><button id="spark-reset" type="button">RESET FLOW</button><button type="button">4 STATES</button></div></div>
-      <aside class="runtime-card snapshot-runtime"><div class="runtime-meta"><div><span class="snapshot-dot"></span><strong>MOCK DITTO RUNTIME</strong></div><span id="spark-state-label">STATE 01 / 04</span></div><div class="phone"><div class="speaker"></div><img id="spark-screen" alt="Spark runtime state"><div id="spark-hotspots" class="snapshot-hotspots"></div><div class="gesture"></div></div><div class="runtime-footer"><span>SPARK</span><span id="spark-hint">OPEN PROJECT</span></div></aside></div>
+    <div class="viewer-panel"><header class="viewer-header"><div><span class="snapshot-dot"></span><strong>DITTO PLAYGROUND / SPARK</strong><small>本机模拟器预览</small></div><button class="viewer-close" type="button">CLOSE ×</button></header>
+      <div class="viewer-body"><div class="viewer-copy"><span>02 / SPARK BUILD</span><h2>Spark</h2><p>用你电脑上的 Android 模拟器运行原生 Spark。会议转写、附件和回复使用示例数据。</p><dl><div><dt>CREATOR</dt><dd>Daria Yi</dd></div><div><dt>PROFILE</dt><dd>Offline Spark demo</dd></div><div><dt>BUILD NUMBER</dt><dd id="spark-top-build">本机连接后显示</dd></div><div><dt>RUNTIME</dt><dd>本机 Android 模拟器</dd></div><div><dt>STATUS</dt><dd id="spark-status">静态预览</dd></div></dl><details class="project-build-details"><summary>BUILD DETAILS</summary><dl>
+      <div><dt>LIVE BUILD</dt><dd id="spark-live-build">本机连接后显示</dd></div>
+      <div><dt>LIVE PROFILE</dt><dd>Android 15 · ARM64 · 本机演示环境</dd></div>
+      </dl></details><div class="viewer-actions"><button id="spark-run-local" type="button">打开 Spark Live</button></div>
+      <p id="spark-local-status" class="project-local-status" role="status"></p>
+      <div id="spark-local-setup" class="project-local-setup" hidden>
+        <a href="./spark-preview.json" download>下载本地运行配置 ↓</a><a href="./spark-setup.html">本机启动器设置 ↗</a><p>首次设置后，回到这里点「打开 Spark Live」。</p>
+      </div></div>
+      <aside class="runtime-card snapshot-runtime project-runtime"><div class="runtime-meta"><div><span class="snapshot-dot"></span><strong>SPARK PREVIEW</strong></div><span id="spark-state-label">首页截图</span></div><div class="phone"><div class="speaker"></div><img id="spark-screen" src="./snapshots/spark-semantic/states/project-overview/screen.png" alt="Spark 首页截图" draggable="false"><iframe id="spark-local-frame" title="Spark 实时预览 · 你的设备" allow="loopback-network" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer" hidden></iframe><div class="gesture"></div></div><div class="runtime-footer"><span>SPARK SESSION</span><span id="spark-hint">点击「打开 Spark Live」</span></div></aside></div>
     </div>
   </section>
-  <script type="module" src="./share.js?v=inline-run-4"></script>
+  <script type="module" src="./share.js?v=spark-live-1"></script>
   <script type="module" src="./project-local.js?v=inline-run-4"></script>
+  <script type="module" src="./spark-local.js?v=1"></script>
 </body>
 </html>

@@ -1,0 +1,8 @@
+{
+  "format": "ditto-local-spark/1",
+  "publicOrigin": "https://dariayi-cell.github.io",
+  "runtime": "macOS ARM64 \u00b7 Android API 35",
+  "launcherPort": 4176,
+  "apkSha256": "91684e6c018c93285135dd4f6c7ef75bbfdfaa0b1b35275d7e4186b92301f126",
+  "requirement": "Use the approved source launcher and companion demo APK from your team; this configuration includes neither."
+}
