@@ -1,90 +1,115 @@
 const runner = 'http://127.0.0.1:4175';
+const site = location.origin === 'http://127.0.0.1:4187' ? 'preview' : 'hosted';
 const viewer = document.querySelector('#project-viewer');
 const action = document.querySelector('#project-run-local');
 const setup = document.querySelector('#project-local-setup');
-const code = document.querySelector('#project-local-code');
 const status = document.querySelector('#project-local-status');
+const build = document.querySelector('#project-live-build');
 const frame = document.querySelector('#project-local-frame');
 const phone = frame.closest('.phone');
-let epoch = 0, mode = 'idle', timer;
+let mode = 'idle', timer, dialog, challenge, grant, expires = 0, consentReady = false;
 
 function show(next, message) {
   mode = next;
   status.textContent = message;
   frame.hidden = next !== 'live';
   phone.classList.toggle('recipient-live', next === 'live');
-  if (next === 'live' || next === 'idle' || next === 'error') clearTimeout(timer);
-  action.disabled = next === 'starting';
+  action.disabled = next === 'starting' || next === 'authorizing';
   action.textContent = next === 'live' ? '断开实时预览' : '在我的设备运行';
+  setup.hidden = next !== 'error';
 }
 
-function disconnect(message = '') {
-  ++epoch;
-  if (mode === 'live') frame.contentWindow?.postMessage({type:'ditto-project-command',kind:'stop'},runner);
-  frame.removeAttribute('src');
-  show('idle', message);
-}
-
-async function connect() {
-  if (!/^[A-Za-z0-9_-]{24}$/.test(code.value.trim())) {
-    setup.hidden = false;
-    status.textContent = '首次使用，打开本地启动器，填连接码。';
-    code.focus();
-    return;
+function disconnect(message = '', next = 'idle') {
+  clearTimeout(timer);
+  if (dialog && !dialog.closed) dialog.close();
+  dialog = null;
+  challenge = null;
+  if (['starting','live'].includes(mode)) {
+    frame.contentWindow?.postMessage({type:'ditto-project-command',kind:'stop'},runner);
   }
-  const current = ++epoch;
+  frame.removeAttribute('src');
+  build.textContent = '本机连接后显示';
+  show(next,message);
+}
+
+async function start() {
+  show('starting','正在连接你的本地模拟器。收到实时画面前保留原截图。');
   if (location.protocol === 'https:') {
     try {
       const permission = await navigator.permissions?.query({name:'loopback-network'});
-      if (epoch !== current || viewer.hidden) return;
+      if (viewer.hidden || mode !== 'starting') return;
       if (permission?.state === 'denied') {
-        setup.hidden = false;
-        show('error','浏览器未允许连接本机。可在站点设置中允许，或用本机窗口预览。');
+        disconnect('浏览器没有允许连接本机。可在站点设置中开启，然后重试。','error');
         return;
       }
     } catch {}
   }
-  if (epoch !== current || viewer.hidden) return;
-  setup.hidden = true;
-  show('starting', '正在连接你的本地设备，首页截图会保留到收到实时画面。');
+  if (viewer.hidden || mode !== 'starting') return;
   const url = new URL('/embed-hosted',runner);
   url.searchParams.set('open','1');
-  url.searchParams.set('code',code.value.trim());
+  url.searchParams.set('grant',grant);
+  url.searchParams.set('source',site);
   frame.src = url.href;
   timer = setTimeout(() => {
-    disconnect();
-    setup.hidden = false;
-    show('error','没连到启动器。确认它正在运行，且浏览器允许此页面连接本机。');
-  }, 12000);
+    grant = null;
+    disconnect('没连到本地启动器。确认新版启动器仍在运行，然后重试。','error');
+  },12000);
 }
 
-action.addEventListener('click', () => mode === 'live' ? disconnect('已断开。') : void connect());
-setup.addEventListener('submit', event => { event.preventDefault(); void connect(); });
-new MutationObserver(() => {
-  if (viewer.hidden) {
-    disconnect();
-    setup.hidden = true;
-  }
-}).observe(viewer,{attributes:true,attributeFilter:['hidden']});
+function requestConsent() {
+  challenge = crypto.randomUUID();
+  consentReady = false;
+  const url = new URL('/authorize',runner);
+  url.searchParams.set('challenge',challenge);
+  url.searchParams.set('source',site);
+  dialog = window.open(url.href,'_blank','popup,width=530,height=465');
+  if (!dialog) return disconnect('请允许此页打开本地确认窗口，然后重试。','error');
+  show('authorizing','首次在本页运行，请在本地启动器窗口确认。');
+  const readyBy = Date.now()+6500, until = Date.now()+90000;
+  const poll = () => {
+    if (mode !== 'authorizing') return;
+    if (dialog?.closed || (!consentReady && Date.now()>readyBy) || Date.now()>until) {
+      disconnect('未连接。请打开新版启动器后重试；截图回放仍可用。','error');
+    } else timer=setTimeout(poll,700);
+  };
+  timer=setTimeout(poll,700);
+}
+
+action.addEventListener('click', () => {
+  if (mode === 'live') disconnect('已断开预览，模拟器保持运行。');
+  else if (grant && Date.now()<expires) void start();
+  else requestConsent();
+});
+new MutationObserver(() => {if (viewer.hidden) disconnect();})
+  .observe(viewer,{attributes:true,attributeFilter:['hidden']});
 
 window.addEventListener('message', event => {
-  if (viewer.hidden || !['starting','live'].includes(mode) ||
-      event.origin !== runner || event.source !== frame.contentWindow) return;
-  if (event.data === 'ditto-project-bridge-ready') {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      disconnect();
-      show('error','启动器没有收到实时画面。还可以直接回放原来的截图。');
-      setup.hidden = false;
-    }, 150000);
+  if (viewer.hidden || event.origin !== runner) return;
+  const data = event.data;
+  if (mode === 'authorizing' && event.source===dialog && data?.type==='ditto-project-consent-ready' && data.challenge===challenge) {
+    consentReady=true;
     return;
   }
-  const data = event.data;
-  if (data?.type !== 'ditto-project-status' || typeof data.label !== 'string') return;
-  if (data.mode === 'live' || data.mode === 'starting') show(data.mode, data.label.slice(0,140));
-  else if (data.mode === 'error' || (data.mode === 'idle' && mode === 'live')) {
-    disconnect();
-    show('error', data.label.slice(0,140));
-    setup.hidden = false;
+  if (mode === 'authorizing' && event.source===dialog && data?.type==='ditto-project-local-consent' &&
+      data.challenge===challenge && /^[A-Za-z0-9_-]{32}$/.test(data.grant)) {
+    clearTimeout(timer);
+    grant=data.grant;
+    expires=Date.now()+55*60*1000;
+    dialog.close(); dialog=null; challenge=null;
+    void start();
+    return;
   }
+  if (!['starting','live'].includes(mode) || event.source !== frame.contentWindow) return;
+  if (data === 'ditto-project-bridge-ready') {
+    clearTimeout(timer);
+    timer=setTimeout(() => disconnect('没有收到实时画面，截图回放仍可用。','error'),30000);
+    return;
+  }
+  if (data?.type !== 'ditto-project-status' || typeof data.label !== 'string') return;
+  if (data.mode === 'live') {
+    clearTimeout(timer);
+    if (typeof data.build === 'string' && /^[A-Za-z0-9.+_() -]{1,90}$/.test(data.build)) build.textContent=data.build;
+    show('live',data.label.slice(0,140));
+  } else if (data.mode === 'starting') show('starting',data.label.slice(0,140));
+  else if (data.mode === 'error' || (data.mode === 'idle' && mode === 'live')) disconnect(data.label.slice(0,140),'error');
 });

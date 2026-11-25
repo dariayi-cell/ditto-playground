@@ -43,6 +43,7 @@ function createPlayer(config) {
     document.querySelector(`#${config.id}-build`).textContent = manifest.source?.build || 'CAPTURED BUILD';
     const version = document.querySelector(`#${config.id}-version`);
     version.textContent = manifest.source?.dittoVersion || `.ditto-play ${manifest.formatVersion}`;
+    if (config.id === 'project') document.querySelector('#project-capture-commit').textContent = manifest.source?.commit || '—';
     if (config.id === 'spark') document.querySelector('#spark-creator').textContent = manifest.creator?.name || 'Daria Yi';
   }
   async function open() {

@@ -52,14 +52,15 @@
   <section class="project-viewer" id="project-viewer" hidden role="dialog" aria-modal="true" aria-label="Project interactive snapshot">
     <button class="viewer-backdrop" type="button" aria-label="Close Project"></button>
     <div class="viewer-panel"><header class="viewer-header"><div><span class="snapshot-dot"></span><strong>DITTO PLAYGROUND / PROJECT</strong><small>PORTABLE INTERACTION GRAPH</small></div><button class="viewer-close" type="button">CLOSE ×</button></header>
-      <div class="viewer-body"><div class="viewer-copy"><span>01 / PROJECT BUILD</span><h2>Project Session</h2><p>Explore Overview, To-do, Project Brain, sessions, artifacts and deterministic mock responses without a local emulator.</p><dl><div><dt>CREATOR</dt><dd>Daria Yi</dd></div><div><dt>BRANCH</dt><dd id="project-branch">LOADING…</dd></div><div><dt>BUILD</dt><dd id="project-build">LOADING…</dd></div><div><dt>VERSION</dt><dd id="project-version">LOADING…</dd></div><div><dt>RUNTIME</dt><dd>Web · Captured Android states</dd></div><div><dt>STATUS</dt><dd id="project-status">LOADING…</dd></div></dl><div class="viewer-actions"><button id="project-reset" type="button">RESET FLOW</button><button type="button">13 STATES</button><button id="project-run-local" type="button">在我的设备运行</button></div>
+      <div class="viewer-body"><div class="viewer-copy"><span>01 / PROJECT BUILD</span><h2>Project Session</h2><p>Explore Overview, To-do, Project Brain, sessions, artifacts and deterministic mock responses without a local emulator.</p><dl><div><dt>CREATOR</dt><dd>Daria Yi</dd></div><div><dt>BRANCH</dt><dd id="project-branch">LOADING…</dd></div><div><dt>BUILD NUMBER</dt><dd id="project-build">LOADING…</dd></div><div><dt>VERSION</dt><dd id="project-version">LOADING…</dd></div><div><dt>RUNTIME</dt><dd>Web · Captured Android states</dd></div><div><dt>STATUS</dt><dd id="project-status">LOADING…</dd></div></dl><details class="project-build-details"><summary>BUILD DETAILS</summary><dl>
+      <div><dt>CAPTURE COMMIT</dt><dd id="project-capture-commit">—</dd></div>
+      <div><dt>LIVE BUILD</dt><dd id="project-live-build">本机连接后显示</dd></div>
+      <div><dt>LIVE PROFILE</dt><dd>Android 15 · ARM64 · 本机演示环境</dd></div>
+      </dl></details><div class="viewer-actions"><button id="project-reset" type="button">RESET FLOW</button><button type="button">13 STATES</button><button id="project-run-local" type="button">在我的设备运行</button></div>
       <p id="project-local-status" class="project-local-status" role="status"></p>
-      <form id="project-local-setup" class="project-local-setup" hidden>
-        <label for="project-local-code">本地启动器连接码</label>
-        <div><input id="project-local-code" type="password" autocomplete="off" maxlength="24" required><button type="submit">连接</button></div>
-        <a href="http://127.0.0.1:4175/connect" target="_blank" rel="noopener noreferrer">打开本地启动器 ↗</a>
-        <a href="./project-preview.json" download>下载演示配置 ↓</a>
-      </form></div>
+      <div id="project-local-setup" class="project-local-setup" hidden>
+        <a href="./project-preview.json" download>下载本地运行配置 ↓</a>
+      </div></div>
       <aside class="runtime-card snapshot-runtime project-runtime"><div class="runtime-meta"><div><span class="snapshot-dot"></span><strong>SNAPSHOT PLAYER</strong></div><span id="project-state-label">STATE 01 / 13</span></div><div class="phone"><div class="speaker"></div><img id="project-screen" src="./snapshots/project-complete/states/overview/screen.png" alt="Project runtime state"><iframe id="project-local-frame" title="Project 实时预览 · 你的设备" allow="loopback-network" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer" hidden></iframe><div id="project-hotspots" class="snapshot-hotspots"></div><div class="gesture"></div></div><div class="runtime-footer"><span>PROJECT SESSION</span><span id="project-hint">CHOOSE A PATH</span></div></aside></div>
     </div>
   </section>
